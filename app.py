@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, make_response
 
 app = Flask(__name__)
 
@@ -14,7 +14,9 @@ def hello(username, password):
     result = "登陆失败"
     if (username in dic) and (password is not None) and (dic.get(username) == password):
         result = "登陆成功"
-    return result
+    response = make_response(jsonify(result))
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 
 if __name__ == '__main__':
