@@ -10,12 +10,9 @@ def index():
 
 @app.route('/hello/<username>/<password>')
 def hello(username, password):
-    dic = {'bowen':106}
+    dic = {'bowen':'106'}
     result = "登陆失败"
-    tf = dic.__contains__(username)
-    value = dic.get(username)
-    tf2= dic.get(username)==password
-    if dic.__contains__(username)&(dic.get(username)==int(password)):
+    if (username in dic) and (password is not None) and (dic.get(username) == password):
         result = "登陆成功"
     return result
 
