@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, make_response
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app, resources=r'/*')
 
 @app.route('/')
 def index():
@@ -14,9 +15,7 @@ def hello(username, password):
     result = "登陆失败"
     if (username in dic) and (password is not None) and (dic.get(username) == password):
         result = "登陆成功"
-    response = make_response(jsonify(result))
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    return response
+    return result
 
 
 if __name__ == '__main__':
