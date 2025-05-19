@@ -15,7 +15,8 @@ def hello(username, password):
     result = "登陆失败"
     if (username in dic) and (password is not None) and (dic.get(username) == password):
         result = "登陆成功"
-    return result
+    response = make_response(jsonify(result))
+    return response
 
 
 if __name__ == '__main__':
